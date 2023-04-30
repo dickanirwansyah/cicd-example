@@ -1,0 +1,5 @@
+FROM adoptopenjdk/openjdk11:latest
+EXPOSE 9898
+RUN mkdir /app
+COPY build/libs/*.jar /app/service-job.jar
+ENTRYPOINT ["java","-jar","/service-job.jar"]
