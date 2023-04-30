@@ -12,7 +12,7 @@ pipeline {
                 bat './gradlew assemble'
             }
         }
-        stage ('Test') {
+        stage ('Unit Test') {
             steps {
                 bat './gradlew test'
             }
@@ -21,6 +21,13 @@ pipeline {
             steps {
                 script {
                     bat 'docker build -t dickanirwansyah1996/service-job .'
+                }
+            }
+        }
+        stage ('Deploy to Docker Container') {
+            steps {
+                script {
+                    bat 'docker run --publish 9898:9898 dickanirwansyah1996/service-job'
                 }
             }
         }
